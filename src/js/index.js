@@ -1,25 +1,28 @@
 /*
  * InkCorner Watchface — PebbleKit JS
  * AppMessage keys:
- *   0 = FONT_CHOICE  : 0=Regular24  1=Regular28  2=Medium24  3=Medium28
- *   1 = BG_CHOICE    : 0=Cream      1=Black      2=White
+ *   0 = FONT_CHOICE : 0=Regular24  1=Regular28  2=Medium24  3=Medium28
+ *   1 = BG_CHOICE   : 0=Cream      1=Black      2=White
+ *   2 = DATE_STYLE  : 0=off  1=standard(right of time)  2=fill
  */
 
 function loadCfg() {
   return {
-    font: +(localStorage.getItem('ic_font') || '0'),
-    bg:   +(localStorage.getItem('ic_bg')   || '0')
+    font:      +(localStorage.getItem('ic_font')      || '0'),
+    bg:        +(localStorage.getItem('ic_bg')        || '0'),
+    dateStyle: +(localStorage.getItem('ic_dateStyle') || '0')
   };
 }
 
 function saveCfg(c) {
-  localStorage.setItem('ic_font', c.font);
-  localStorage.setItem('ic_bg',   c.bg);
+  localStorage.setItem('ic_font',      c.font);
+  localStorage.setItem('ic_bg',        c.bg);
+  localStorage.setItem('ic_dateStyle', c.dateStyle);
 }
 
 function sendMsg(c) {
   Pebble.sendAppMessage(
-    { '0': c.font, '1': c.bg },
+    { '0': c.font, '1': c.bg, '2': c.dateStyle },
     function() { console.log('InkCorner: sent ok'); },
     function(e) { console.log('InkCorner: send failed', JSON.stringify(e)); }
   );
@@ -47,6 +50,7 @@ function buildConfig(c) {
     + '.opt span{font-size:14px;color:#1a1a1a}'
     + '.swatch{width:22px;height:22px;border-radius:4px;flex-shrink:0;border:1px solid rgba(0,0,0,0.15)}'
     + '.cream{background:#f2f1ed}.black{background:#0a0a0a}.white{background:#fafafa}'
+    + '.hint{font-size:11px;color:#8a7060;margin:3px 0 0 42px;line-height:1.4}'
     + '#s{display:block;width:100%;padding:14px;background:#321c14;color:#f2f1ed;border:none;'
     +    'border-radius:8px;font-size:14px;letter-spacing:.06em;text-transform:uppercase;margin-top:28px;cursor:pointer;box-sizing:border-box}'
     + '</style></head><body>'
@@ -64,12 +68,19 @@ function buildConfig(c) {
     + '<label class="opt"><input type="radio" name="bg" value="1"' + (c.bg===1?' checked':'') + '><div class="swatch black"></div><span>ePaper Black</span></label>'
     + '<label class="opt"><input type="radio" name="bg" value="2"' + (c.bg===2?' checked':'') + '><div class="swatch white"></div><span>ePaper White</span></label>'
 
+    + '<h3>Date</h3>'
+    + '<label class="opt"><input type="radio" name="dateStyle" value="0"' + (c.dateStyle===0?' checked':'') + '><span>Off</span></label>'
+    + '<label class="opt"><input type="radio" name="dateStyle" value="1"' + (c.dateStyle===1?' checked':'') + '><span>Standard</span></label>'
+    + '<p class="hint">Two lines right of time — 24 May / Monday</p>'
+    + '<label class="opt"><input type="radio" name="dateStyle" value="2"' + (c.dateStyle===2?' checked':'') + '><span>Fill</span></label>'
+    + '<p class="hint">Tiled across screen · mixed case · random highlights · refreshes each hour</p>'
+
     + '<button id="s">Save</button>'
     + '<script>'
     + 'function g(n){var e=document.querySelector("input[name="+n+"]:checked");return e?+e.value:0;}'
     + 'document.getElementById("s").onclick=function(){'
     +   'location.href="pebblejs://close#"+encodeURIComponent(JSON.stringify({'
-    +   'font:g("font"),bg:g("bg")}));'
+    +   'font:g("font"),bg:g("bg"),dateStyle:g("dateStyle")}));'
     + '};<\/script></body></html>';
 
   return 'data:text/html,' + encodeURIComponent(h);

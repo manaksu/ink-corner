@@ -1,9 +1,9 @@
 {
-  "uuid": "52b0f4c5-6cf6-4bdf-8093-d2d5b54233a8",
+  "uuid": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
   "shortName": "InkCorner",
   "longName": "InkCorner Watch",
   "companyName": "Manaksu",
-  "versionLabel": "1.15",
+  "versionLabel": "1.0",
   "sdkVersion": "3",
   "targetPlatforms": ["basalt"],
   "watchapp": {
@@ -11,8 +11,9 @@
   },
   "capabilities": ["configurable"],
   "appKeys": {
-    "FONT_CHOICE": 0,
-    "BG_CHOICE":   1
+    "FONT_CHOICE":  0,
+    "BG_CHOICE":    1,
+    "DATE_STYLE":   2
   },
   "resources": {
     "media": [
