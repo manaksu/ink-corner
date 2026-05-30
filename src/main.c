@@ -1,4 +1,5 @@
 #include <pebble.h>
+#include <ctype.h>
 
 // ── Keys ──────────────────────────────────────────────────
 #define KEY_FONT_CHOICE  0
