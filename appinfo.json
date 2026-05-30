@@ -1,9 +1,9 @@
 {
-  "uuid": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+  "uuid": "52b0f4c5-6cf6-4bdf-8093-d2d5b54233a8",
   "shortName": "InkCorner",
   "longName": "InkCorner Watch",
   "companyName": "Manaksu",
-  "versionLabel": "1.0",
+  "versionLabel": "1.25",
   "sdkVersion": "3",
   "targetPlatforms": ["basalt"],
   "watchapp": {
