@@ -10,6 +10,9 @@
     "watchface": true
   },
   "capabilities": ["configurable"],
+  "pebblekit-js": {
+    "file": "src/js/index.js"
+  },
   "resources": {
     "media": [
       {
