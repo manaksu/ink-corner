@@ -5,22 +5,17 @@ A minimal Pebble watchface for Pebble Time Steel (Basalt).
 - 24hr time bottom-left, seconds top-right
 - Configurable font: Space Grotesk Regular/Medium × 24/28px
 - Configurable background: ePaper Cream / Black / White
-- Settings persist across reboots via `persist_write/read`
+- Settings built into PebbleKit JS — no external hosting needed
+- Prefs persist across reboots via `persist_write/read`
 
 ## CloudPebble Import
 
 1. [cloudpebble.net](https://cloudpebble.net) → **Create Project → Import → Import from ZIP**
 2. Upload `inkcorner.zip`
-3. In **Settings → App Message Keys** add:
-   - `FONT_CHOICE` = `0`
-   - `BG_CHOICE` = `1`
 
-## Settings page
+## AppMessage Keys
 
-Host `resources/index.html` on any static server (GitHub Pages, Vercel, etc.)  
-Then update the `Pebble.openURL(...)` line in `src/js/index.js` with your URL.
-
-## Message Keys
+Defined in `appinfo.json` under `appKeys`:
 
 | Key | Integer | Values |
 |-----|---------|--------|
@@ -33,7 +28,7 @@ Then update the `Pebble.openURL(...)` line in `src/js/index.js` with your URL.
 src/
   main.c              — watchface C code
   js/
-    index.js          — PebbleKit JS (config bridge)
+    index.js          — PebbleKit JS + inline settings UI
 resources/
   fonts/
     SpaceGrotesk-Regular.ttf
@@ -42,6 +37,5 @@ resources/
     bg_cream.png
     bg_black.png
     bg_white.png
-  index.html          — settings UI (host separately)
 appinfo.json
 ```

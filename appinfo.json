@@ -10,8 +10,9 @@
     "watchface": true
   },
   "capabilities": ["configurable"],
-  "pebblekit-js": {
-    "file": "src/js/index.js"
+  "appKeys": {
+    "FONT_CHOICE": 0,
+    "BG_CHOICE": 1
   },
   "resources": {
     "media": [
