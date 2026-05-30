@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>InkCorner Settings</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      background: #f2f1ed;
+      color: #1a1a1a;
+      padding: 24px 20px 40px;
+      min-height: 100vh;
+    }
+
+    h1 {
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #8a7060;
+      margin-bottom: 28px;
+    }
+
+    .section-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #8a7060;
+      margin-bottom: 12px;
+    }
+
+    .section { margin-bottom: 32px; }
+
+    /* Radio pill rows */
+    .options { display: flex; flex-direction: column; gap: 8px; }
+
+    .option {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 13px 16px;
+      border-radius: 8px;
+      border: 1.5px solid transparent;
+      background: rgba(255,255,255,0.5);
+      cursor: pointer;
+      transition: border-color 0.15s, background 0.15s;
+    }
+    .option:active { opacity: 0.75; }
+    .option.selected {
+      border-color: #321c14;
+      background: rgba(255,255,255,0.85);
+    }
+
+    .radio-dot {
+      width: 18px; height: 18px;
+      border-radius: 50%;
+      border: 1.5px solid #c0b0a0;
+      flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      transition: border-color 0.15s;
+    }
+    .option.selected .radio-dot {
+      border-color: #321c14;
+    }
+    .radio-dot::after {
+      content: '';
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: transparent;
+      transition: background 0.15s;
+    }
+    .option.selected .radio-dot::after { background: #321c14; }
+
+    .option-text { flex: 1; }
+    .option-name  { font-size: 15px; font-weight: 400; color: #1a1a1a; }
+    .option-desc  { font-size: 11px; color: #8a7060; margin-top: 1px; }
+
+    /* BG swatches */
+    .swatch {
+      width: 28px; height: 28px;
+      border-radius: 5px;
+      flex-shrink: 0;
+      border: 1px solid rgba(0,0,0,0.12);
+    }
+    .swatch.cream { background: #f2f1ed; }
+    .swatch.black { background: #0a0a0a; }
+    .swatch.white { background: #fafafa; }
+
+    /* Font previews */
+    .font-preview {
+      font-size: 20px;
+      color: #321c14;
+      line-height: 1;
+      letter-spacing: -0.2px;
+      min-width: 58px;
+      text-align: right;
+    }
+
+    .save-btn {
+      width: 100%;
+      padding: 16px;
+      background: #321c14;
+      color: #f2f1ed;
+      border: none;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      margin-top: 8px;
+    }
+    .save-btn:active { opacity: 0.8; }
+  </style>
+</head>
+<body>
+
+<h1>InkCorner</h1>
+
+<div class="section">
+  <div class="section-label">Font</div>
+  <div class="options" id="font-options">
+    <div class="option" data-group="font" data-value="0">
+      <div class="radio-dot"></div>
+      <div class="option-text">
+        <div class="option-name">Regular · 24</div>
+        <div class="option-desc">Lighter, compact</div>
+      </div>
+      <div class="font-preview" id="fp0">14:32</div>
+    </div>
+    <div class="option" data-group="font" data-value="1">
+      <div class="radio-dot"></div>
+      <div class="option-text">
+        <div class="option-name">Regular · 28</div>
+        <div class="option-desc">Lighter, larger</div>
+      </div>
+      <div class="font-preview" id="fp1" style="font-size:24px">14:32</div>
+    </div>
+    <div class="option" data-group="font" data-value="2">
+      <div class="radio-dot"></div>
+      <div class="option-text">
+        <div class="option-name">Medium · 24</div>
+        <div class="option-desc">Balanced, compact</div>
+      </div>
+      <div class="font-preview" id="fp2" style="font-weight:500">14:32</div>
+    </div>
+    <div class="option" data-group="font" data-value="3">
+      <div class="radio-dot"></div>
+      <div class="option-text">
+        <div class="option-name">Medium · 28</div>
+        <div class="option-desc">Balanced, larger</div>
+      </div>
+      <div class="font-preview" id="fp3" style="font-size:24px;font-weight:500">14:32</div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-label">Background</div>
+  <div class="options" id="bg-options">
+    <div class="option" data-group="bg" data-value="0">
+      <div class="radio-dot"></div>
+      <div class="swatch cream"></div>
+      <div class="option-text">
+        <div class="option-name">ePaper Cream</div>
+        <div class="option-desc">Warm off-white</div>
+      </div>
+    </div>
+    <div class="option" data-group="bg" data-value="1">
+      <div class="radio-dot"></div>
+      <div class="swatch black"></div>
+      <div class="option-text">
+        <div class="option-name">ePaper Black</div>
+        <div class="option-desc">High contrast dark</div>
+      </div>
+    </div>
+    <div class="option" data-group="bg" data-value="2">
+      <div class="radio-dot"></div>
+      <div class="swatch white"></div>
+      <div class="option-text">
+        <div class="option-name">ePaper White</div>
+        <div class="option-desc">Clean bright</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<button class="save-btn" onclick="save()">Save</button>
+
+<script>
+  var fontChoice = 0;
+  var bgChoice   = 0;
+
+  function selectOption(el) {
+    var group = el.dataset.group;
+    document.querySelectorAll('[data-group="' + group + '"]').forEach(function(o) {
+      o.classList.remove('selected');
+    });
+    el.classList.add('selected');
+    if (group === 'font') fontChoice = parseInt(el.dataset.value);
+    if (group === 'bg')   bgChoice   = parseInt(el.dataset.value);
+  }
+
+  document.querySelectorAll('.option').forEach(function(el) {
+    el.addEventListener('click', function() { selectOption(el); });
+  });
+
+  // Select defaults
+  document.querySelector('[data-group="font"][data-value="0"]').classList.add('selected');
+  document.querySelector('[data-group="bg"][data-value="0"]').classList.add('selected');
+
+  function save() {
+    var cfg = {
+      FONT_CHOICE: fontChoice,
+      BG_CHOICE:   bgChoice
+    };
+    var return_to = (location.hash) ? decodeURIComponent(location.hash.slice(1)) : null;
+    if (return_to) {
+      location.href = return_to + encodeURIComponent(JSON.stringify(cfg));
+    }
+  }
+</script>
+</body>
+</html>

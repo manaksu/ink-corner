@@ -1,0 +1,60 @@
+{
+  "uuid": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+  "shortName": "InkCorner",
+  "longName": "InkCorner Watch",
+  "companyName": "Manaksu",
+  "versionLabel": "1.0",
+  "sdkVersion": "3",
+  "targetPlatforms": ["basalt"],
+  "watchapp": {
+    "watchface": true
+  },
+  "capabilities": ["configurable"],
+  "messageKeys": {
+    "FONT_CHOICE": 0,
+    "BG_CHOICE": 1
+  },
+  "resources": {
+    "media": [
+      {
+        "type": "font",
+        "name": "FONT_SG_REGULAR_24",
+        "file": "fonts/SpaceGrotesk-Regular.ttf",
+        "characterRegex": "[0-9:]"
+      },
+      {
+        "type": "font",
+        "name": "FONT_SG_REGULAR_28",
+        "file": "fonts/SpaceGrotesk-Regular.ttf",
+        "characterRegex": "[0-9:]"
+      },
+      {
+        "type": "font",
+        "name": "FONT_SG_MEDIUM_24",
+        "file": "fonts/SpaceGrotesk-Medium.ttf",
+        "characterRegex": "[0-9:]"
+      },
+      {
+        "type": "font",
+        "name": "FONT_SG_MEDIUM_28",
+        "file": "fonts/SpaceGrotesk-Medium.ttf",
+        "characterRegex": "[0-9:]"
+      },
+      {
+        "type": "bitmap",
+        "name": "BG_CREAM",
+        "file": "images/bg_cream.png"
+      },
+      {
+        "type": "bitmap",
+        "name": "BG_BLACK",
+        "file": "images/bg_black.png"
+      },
+      {
+        "type": "bitmap",
+        "name": "BG_WHITE",
+        "file": "images/bg_white.png"
+      }
+    ]
+  }
+}
