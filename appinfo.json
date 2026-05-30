@@ -12,7 +12,9 @@
   "capabilities": ["configurable"],
   "appKeys": {
     "FONT_CHOICE": 0,
-    "BG_CHOICE": 1
+    "BG_CHOICE":   1,
+    "BATT_SHOW":   2,
+    "BATT_LOC":    3
   },
   "resources": {
     "media": [
