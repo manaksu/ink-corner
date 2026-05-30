@@ -4,7 +4,7 @@
 #define KEY_FONT_CHOICE    0
 #define KEY_BG_CHOICE      1
 #define KEY_BATT_SHOW      2  // 0=off 1=triangles
-#define KEY_BATT_LOC       3  // 0=center 1=top-left 2=bottom-right (above time)
+#define KEY_BATT_LOC       3  // 0=center 1=top-left 2=bottom-right 3=bottom-left (above time)
 
 // ── State ─────────────────────────────────────────────────
 static Window      *s_window;
@@ -55,10 +55,10 @@ static GColor get_batt_empty() {
 // rows: 4, 3, 2, 1  (top to bottom)
 // side = 10px  height = side * sqrt(3)/2 ≈ 8.66 → use 9
 // hgap = 3, vgap = 4
-#define TRI_S    10
-#define TRI_H    9    // floor(10 * sqrt(3)/2)
-#define TRI_HGAP 3
-#define TRI_VGAP 4
+#define TRI_S    18
+#define TRI_H    16    // floor(18 * sqrt(3)/2)
+#define TRI_HGAP 5
+#define TRI_VGAP 6
 
 // fill order: bottom tri first (index 9), top row last (0-3)
 static const int FILL_ORDER[10] = { 9, 7, 8, 4, 5, 6, 0, 1, 2, 3 };
@@ -125,8 +125,8 @@ static void batt_layer_draw(Layer *layer, GContext *ctx) {
 
 // ── Battery location → GRect ───────────────────────────────
 // layer is 60x60 (fits 4×10 + gaps comfortably)
-#define BATT_W 60
-#define BATT_H 60
+#define BATT_W 100
+#define BATT_H 100
 
 static GRect batt_frame() {
   // screen is 144x168
@@ -135,10 +135,12 @@ static GRect batt_frame() {
       return GRect((144 - BATT_W) / 2, (168 - BATT_H) / 2, BATT_W, BATT_H);
     case 1:  // top-left
       return GRect(4, 4, BATT_W, BATT_H);
-    case 2:  // bottom-right, above time
+    case 2:  // bottom-right
+      return GRect(144 - BATT_W - 4, 168 - BATT_H - 4, BATT_W, BATT_H);
+    case 3:  // bottom-left, above time
     default: {
       int lh = TIME_LAYER_H[s_font_choice];
-      return GRect(144 - BATT_W - 4, 168 - lh - BATT_H - 8, BATT_W, BATT_H);
+      return GRect(4, 168 - lh - BATT_H - 8, BATT_W, BATT_H);
     }
   }
 }

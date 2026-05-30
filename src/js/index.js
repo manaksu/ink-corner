@@ -42,7 +42,7 @@ function buildConfig(c) {
 
   var battLocSection = c.battShow === 1
     ? '<h3>Battery position</h3>'
-      + radio('battLoc', ['Center', 'Top left', 'Bottom right (above time)'], c.battLoc)
+      + radio('battLoc', ['Center', 'Top left', 'Bottom right', 'Bottom left (above time)'], c.battLoc)
     : '';
 
   var h = '<!DOCTYPE html><html><head>'
@@ -94,7 +94,8 @@ function buildConfig(c) {
     +       'sec.innerHTML="<h3>Battery position<\/h3>"'
     +         '+"<label class=opt><input type=radio name=battLoc value=0 checked><span>Center<\/span><\/label>"'
     +         '+"<label class=opt><input type=radio name=battLoc value=1><span>Top left<\/span><\/label>"'
-    +         '+"<label class=opt><input type=radio name=battLoc value=2><span>Bottom right (above time)<\/span><\/label>";'
+    +         '+"<label class=opt><input type=radio name=battLoc value=2><span>Bottom right<\/span><\/label>"'
+    +         '+"<label class=opt><input type=radio name=battLoc value=3><span>Bottom left (above time)<\/span><\/label>";'
     +     '}else{sec.innerHTML="";}'
     +   '});'
     + '});'
