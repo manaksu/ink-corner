@@ -79,9 +79,9 @@ static void apply_settings() {
 
 static void inbox_received(DictionaryIterator *iter, void *ctx) {
   Tuple *t;
-  t = dict_find(iter, MESSAGE_KEY_FONT_CHOICE);
+  t = dict_find(iter, KEY_FONT_CHOICE);
   if (t) { s_font_choice = (int)t->value->int32; persist_write_int(KEY_FONT_CHOICE, s_font_choice); }
-  t = dict_find(iter, MESSAGE_KEY_BG_CHOICE);
+  t = dict_find(iter, KEY_BG_CHOICE);
   if (t) { s_bg_choice   = (int)t->value->int32; persist_write_int(KEY_BG_CHOICE,   s_bg_choice);   }
   apply_settings();
 }

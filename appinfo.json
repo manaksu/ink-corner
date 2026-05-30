@@ -10,10 +10,6 @@
     "watchface": true
   },
   "capabilities": ["configurable"],
-  "messageKeys": {
-    "FONT_CHOICE": 0,
-    "BG_CHOICE": 1
-  },
   "resources": {
     "media": [
       {
